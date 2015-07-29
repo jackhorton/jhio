@@ -1,0 +1,12 @@
+extends ../layout.jade
+
+append head
+    link(href='/css/home.css')
+    title Home | jackhorton.io
+    
+block main
+    each part in parts
+        !{part.template}
+    
+append foot
+    script(src='/js/home.js')

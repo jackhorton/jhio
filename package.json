@@ -1,0 +1,26 @@
+{
+  "name": "jhio",
+  "version": "0.0.1",
+  "description": "Source for jackhorton.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "gulp test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jackhorton/jhio"
+  },
+  "author": "Jack Horton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jackhorton/jhio/issues"
+  },
+  "homepage": "https://github.com/jackhorton/jhio",
+  "dependencies": {
+    "compression": "^1.5.1",
+    "express": "^4.13.1",
+    "jade": "^1.11.0",
+    "lodash": "^3.10.0"
+  }
+}
