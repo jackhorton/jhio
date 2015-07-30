@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="/css/common.css" rel="stylesheet">
+    <layout-placeholder name="head" />
+</head>
+<body>
+    <div id="${data.pageId}" class="container">
+        <include template="../components/header/header.marko" />
+        <include template="../components/sidebar/sidebar.marko" selected="${data.pageId}"/>
+        <main>
+            <layout-placeholder name="content" />
+        </main>
+        <include template="../components/footer/footer.marko" />
+        <script src="/js/common.js"></script>
+        <layout-placeholder name="scripts" />
+    </div>
+</body>
+</html>

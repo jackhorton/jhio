@@ -1,5 +1,8 @@
 'use strict';
 
+// allow us to require('file.marko')
+require('marko/node-require').install();
+
 const express = require('express');
 const compression = require('compression');
 

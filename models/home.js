@@ -1,18 +1,15 @@
 'use strict';
 
 const path = require('path');
-
-const homePartTemplates = {
-    post: path.resolve(__dirname, '../components/home-parts/post/post.jade'),
-    activity: path.resolve(__dirname, '../components/home-parts/activity/activity.jade')
-};
+const utils = require('./utils');
 
 exports.fetchParts = function fetchParts(callback) {
     const response = {
         pageId: 'home',
+        pageTitle: utils.formatTitle('Home'),
         parts: [{
             type: 'post',
-            template: homePartTemplates.post,
+            template: utils.getComponentPath('home-parts/post/post.marko'),
             data: {
                 title: 'Awesome Post Title',
                 url: 'https://www.jackhorton.io/posts/awesome-post-title',
@@ -21,7 +18,7 @@ exports.fetchParts = function fetchParts(callback) {
         },
         {
             type: 'activity',
-            template: homePartTemplates.activity,
+            template: utils.getComponentPath('home-parts/activity/activity.marko'),
             data: {
                 service: 'github',
                 action: 'star',
@@ -30,5 +27,7 @@ exports.fetchParts = function fetchParts(callback) {
         }]
     };
 
-    return callback(null, response);
+    process.nextTick(function () {
+        callback(null, response);
+    });
 };
