@@ -7,6 +7,7 @@ exports.fetchParts = function fetchParts(callback) {
     const response = {
         pageId: 'home',
         pageTitle: utils.formatTitle('Home'),
+        header: 'jackhorton.io',
         parts: [{
             type: 'post',
             template: utils.getComponentPath('home-parts/post/post.marko'),

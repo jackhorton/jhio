@@ -6,7 +6,7 @@
 </head>
 <body>
     <div id="${data.pageId}" class="container">
-        <include template="../components/header/header.marko" />
+        <include template="../components/header/header.marko" header="${data.header}" />
         <include template="../components/sidebar/sidebar.marko" selected="${data.pageId}"/>
         <main>
             <layout-placeholder name="content" />

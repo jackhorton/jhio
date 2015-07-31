@@ -1,0 +1,31 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+
+.container {
+    width: 100%;
+    padding: 10px 0;
+    margin: auto;
+}
+
+main {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+@media only screen and (min-width: 1024px) {
+    .container {
+        padding: 0;
+        width: 1014px;
+    }
+}
+
+@media only screen and (min-width: 1680px) {
+    .container {
+        width: 1600px;
+    }
+}

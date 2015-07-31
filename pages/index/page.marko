@@ -1,11 +1,11 @@
-<layout-use template="../layout.marko" page-id="${data.pageId}">
+<layout-use template="../layout.marko" page-id="${data.pageId}" header="${data.header}">
     <layout-put into="head">
         <link href="/css/home.css">
         <title>${data.pageTitle}</title>
     </layout-put>
     <layout-put into="content">
         <for each="part in data.parts">
-            <include template="${part.template}" data="${part.data}"/>
+            <include template="${part.template}" model="${part.data}"/>
         </for>
     </layout-put>
     <layout-put into="scripts">
