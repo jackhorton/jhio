@@ -10,7 +10,7 @@ exports.fetchParts = function fetchParts(callback) {
         header: 'jackhorton.io',
         parts: [{
             type: 'post',
-            template: utils.getComponentPath('home-parts/post/post.marko'),
+            template: utils.getComponentPath('home/post/post.marko'),
             data: {
                 title: 'Awesome Post Title',
                 url: 'https://www.jackhorton.io/posts/awesome-post-title',
@@ -19,7 +19,7 @@ exports.fetchParts = function fetchParts(callback) {
         },
         {
             type: 'activity',
-            template: utils.getComponentPath('home-parts/activity/activity.marko'),
+            template: utils.getComponentPath('home/activity/activity.marko'),
             data: {
                 service: 'github',
                 action: 'star',

@@ -1,0 +1,15 @@
+{
+    // environment
+    "node": true,
+    "browser": false,
+
+    // enforcing
+    "plusplus": false,
+    "quotmark": "single",
+    "unused": "strict",
+    "maxparams": 4,
+
+    // relaxing
+    "globalstrict": true,
+    "validthis": true
+}

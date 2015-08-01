@@ -28,3 +28,6 @@ node_modules
 
 # Compiled marko templates
 **/*.marko.js
+
+# Compiled less/js files
+static

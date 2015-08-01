@@ -1,0 +1,60 @@
+{
+    "disallowKeywords": ["with"],
+    "disallowMultipleLineBreaks": true,
+    "disallowMultipleLineStrings": true,
+    "disallowMultipleSpaces": true,
+    "disallowNewlineBeforeBlockStatements": true,
+    "disallowSpaceAfterObjectKeys": true,
+    "disallowSpaceBeforePostfixUnaryOperators": true,
+    "disallowSpacesInCallExpression": true,
+    "disallowSpacesInNamedFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
+    "disallowSpacesInsideArrayBrackets": "all",
+    "disallowSpacesInsideParentheses": true,
+    "disallowTrailingComma": true,
+    "disallowTrailingWhitespace": "ignoreEmptyLines",
+    "disallowYodaConditions": true,
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+    "requireCapitalizedConstructors": true,
+    "requireCommaBeforeLineBreak": true,
+    "requireCurlyBraces": true,
+    "requireDotNotation": true,
+    "requireLineFeedAtFileEnd": true,
+    "requirePaddingNewLineAfterVariableDeclaration": true,
+    "requirePaddingNewLinesAfterUseStrict": true,
+    "requirePaddingNewLinesBeforeExport": true,
+    "requirePaddingNewlinesBeforeKeywords": [
+        "do",
+        "for",
+        "if",
+        "switch",
+        "case",
+        "try",
+        "while"
+    ],
+    "requirePaddingNewLinesBeforeLineComments": { "allExcept": "firstAfterCurly" },
+    "requireParenthesesAroundIIFE": true,
+    "requireSemicolons": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "requireSpaceAfterKeywords": true,
+    "requireSpaceAfterLineComment": true,
+    "requireSpaceBeforeBinaryOperators": true,
+    "requireSpaceBeforeBlockStatements": true,
+    "requireSpaceBeforeKeywords": [
+        "else",
+        "catch"
+    ],
+    "requireSpaceBeforeObjectValues": true,
+    "requireSpaceBetweenArguments": true,
+    "requireSpacesInAnonymousFunctionExpression": {
+        "beforeOpeningRoundBrace": true,
+        "beforeOpeningCurlyBrace": true
+    },
+    "requireSpacesInConditionalExpression": true,
+    "requireSpacesInForStatement": true,
+    "safeContextKeyword": ["self"],
+    "validateIndentation": 4,
+    "validateParameterSeparator": ", ",
+    "validateQuoteMarks": "'"
+}

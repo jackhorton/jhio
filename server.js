@@ -10,8 +10,8 @@ const app = express();
 
 app.use(compression());
 
-app.use('/js/*', express.static('/static/js'));
-app.use('/css/*', express.static('/static/css'));
+app.use('/js', express.static('static/js'));
+app.use('/css', express.static('static/css'));
 
 // app.use('/admin', require('./admin'));
 
