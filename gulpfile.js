@@ -60,7 +60,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('watch', function () {
-    gulp.watch(['./pages/common.less', './pages/*/page.less'], ['less']);
+    gulp.watch(['./pages/common.less', './pages/*/page.less', './components/**/*.less'], ['less']);
     gulp.watch('./pages/*/page.js', ['javascript']);
 });
 
