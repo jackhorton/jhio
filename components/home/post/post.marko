@@ -1,5 +1,5 @@
-<a href="${data.model.url}">
-    <div class="home-part home-part-post">
+<layout-use template="../home-part.marko" model="${data.model}">
+    <layout-put into="card-body">
         <h4>${data.model.title}</h4>
-    </div>
-</a>
+    </layout-put>
+</layout-use>

@@ -12,6 +12,7 @@ exports.fetchParts = function fetchParts(callback) {
             type: 'post',
             template: utils.getComponentPath('home/post/post.marko'),
             data: {
+                'class': 'home-part-post',
                 title: 'Awesome Post Title',
                 url: 'https://www.jackhorton.io/posts/awesome-post-title',
                 preview: 'Herp merp derp, lerp kerp herminermerp.'
@@ -21,6 +22,7 @@ exports.fetchParts = function fetchParts(callback) {
             type: 'activity',
             template: utils.getComponentPath('home/activity/activity.marko'),
             data: {
+                'class': 'home-part-activity',
                 service: 'github',
                 action: 'star',
                 title: 'Starred visionmedia/jade'
