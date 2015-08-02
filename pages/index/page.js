@@ -1,5 +1,5 @@
 'use strict';
 
-var $ = require('jquery');
+const $ = require('jquery');
 
-console.log('huzzah');
+console.log($('main').html());

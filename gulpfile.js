@@ -3,8 +3,7 @@
 const gulp = require('gulp');
 const jscs = require('gulp-jscs');
 const jshint = require('gulp-jshint');
-const mocha = require('gulp-mocha');
-const istanbul = require('gulp-istanbul');
+const stylish = require('jshint-stylish');
 const less = require('gulp-less');
 const browserify = require('browserify');
 const source = require('vinyl-source-stream');
@@ -20,7 +19,8 @@ const postcss = require('gulp-postcss');
 gulp.task('javascript', function () {
     // set up common bundle
     const commonLibs = ['jquery'];
-    const commonBundle = browserify({noParse: commonLibs})
+
+    browserify({noParse: commonLibs})
         .require(commonLibs)
         .bundle()
         .pipe(source('common.js'))
@@ -29,6 +29,7 @@ gulp.task('javascript', function () {
 
     // set up page bundles
     const jsSources = glob.sync('./pages/*/page.js');
+    
     for (let i = 0; i < jsSources.length; i++) {
         const b = browserify({
             entries: jsSources[i]
@@ -59,9 +60,17 @@ gulp.task('less', function () {
         .pipe(gulp.dest('./static/css'));
 });
 
+gulp.task('lint', function () {
+    return gulp.src(['./**/*.js', '!./node_modules/**', '!./static/**', '!./**/*.marko.js'])
+        .pipe(jshint())
+        .pipe(jshint.reporter(stylish))
+        .pipe(jscs());
+});
+
 gulp.task('watch', function () {
+    gulp.watch(['./**/*.js', '!./node_modules/**', '!./static/**', '!./**/*.marko.js'], ['lint']);
     gulp.watch(['./pages/common.less', './pages/*/page.less', './components/**/*.less'], ['less']);
     gulp.watch('./pages/*/page.js', ['javascript']);
 });
 
-gulp.task('default', ['javascript', 'less', 'watch']);
+gulp.task('default', ['lint', 'javascript', 'less', 'watch']);

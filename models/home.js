@@ -1,6 +1,5 @@
 'use strict';
 
-const path = require('path');
 const utils = require('./utils');
 
 exports.fetchParts = function fetchParts(callback) {

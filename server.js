@@ -16,6 +16,7 @@ app.use('/css', express.static('static/css'));
 // app.use('/admin', require('./admin'));
 
 app.get('/', require('./pages/index/controller'));
+
 // app.get('/projects', require('./pages/projects/controller'));
 // app.get('/posts', require('./pages/posts/controller'));
 // app.get('/resume', require('./pages/resume/controller'));
