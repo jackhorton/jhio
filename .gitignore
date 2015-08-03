@@ -31,3 +31,6 @@ node_modules
 
 # Compiled less/js files
 static
+
+# Super secret passwords
+config.json

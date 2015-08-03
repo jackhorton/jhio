@@ -4,8 +4,8 @@
         <title>${data.pageTitle}</title>
     </layout-put>
     <layout-put into="content">
-        <for each="part in data.parts">
-            <include template="${part.template}" model="${part.data}"/>
+        <for each="event in data.parts.github">
+            <include template="../../components/home/activity/activity.marko" model="${event}"/>
         </for>
     </layout-put>
     <layout-put into="scripts">

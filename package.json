@@ -18,11 +18,13 @@
   },
   "homepage": "https://github.com/jackhorton/jhio",
   "dependencies": {
+    "async": "^1.4.0",
     "compression": "^1.5.1",
     "express": "^4.13.1",
     "jquery": "^2.1.4",
     "lodash": "^3.10.0",
-    "marko": "^2.7.9"
+    "marko": "^2.7.9",
+    "request": "^2.60.0"
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
