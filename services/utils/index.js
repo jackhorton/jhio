@@ -11,5 +11,8 @@ function formatTitle(pageTitle) {
 }
 
 function getComponentPath(component) {
-    return path.resolve(__dirname, '../../components', component);
+    const slashIndex = component.lastIndexOf('/');
+    const componentName = component.substring(slashIndex > 0 ? slashIndex + 1 : 0);
+
+    return path.resolve(__dirname, '../../components', component, `${componentName}.marko`);
 }

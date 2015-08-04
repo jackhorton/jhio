@@ -1,6 +1,6 @@
 'use strict';
 
-const home = require('../../models/home');
+const home = require('../../services/home');
 const page = require('./page.marko');
 
 module.exports = function controller(req, res) {
