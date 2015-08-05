@@ -5,10 +5,16 @@ require('marko/node-require').install();
 
 const express = require('express');
 const compression = require('compression');
+const morgan = require('morgan');
 
 const app = express();
 
 app.use(compression());
+app.use(morgan('dev', {
+    skip: function (req, res) {
+        return req.originalUrl.indexOf('/js') >= 0 || req.originalUrl.indexOf('/css') >= 0;
+    }
+}));
 
 app.use('/js', express.static('static/js'));
 app.use('/css', express.static('static/css'));

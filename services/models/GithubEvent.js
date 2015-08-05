@@ -60,7 +60,6 @@ class GithubEvent {
         let text;
         let url;
         const name = this.event.repo.name;
-        const date = this.date;
 
         if (this.type === 'PushEvent') {
             text = `Pushed ${this.event.payload.size} commit${this.event.payload.size > 1 ? 's' : ''} to ${name}`;

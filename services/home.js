@@ -6,11 +6,13 @@ const utils = require('./utils');
 const config = require('../config');
 const GithubEvent = require('./models/GithubEvent');
 
-// only fetch new data every 60 seconds
+// only fetch new data every 10 minutes
 const TIMEOUT = 1000 * 60 * 10;
 
 const cache = {
-    github: {}
+    github: {
+        lastRequest: 1
+    }
 };
 
 exports.fetchParts = function fetchParts(callback) {
@@ -32,7 +34,9 @@ exports.fetchParts = function fetchParts(callback) {
  * @param {Function} callback - a function(err, data) that gets called by async.parallel
  */
 function getGithubEvents(callback) {
-    if (/* cache.github.lastRequest && Date.now() - cache.github.lastRequest > TIMEOUT */ true) {
+    const now = Date.now();
+
+    if (now - cache.github.lastRequest > TIMEOUT) {
         const options = {
             url: 'https://api.github.com/users/jackhorton/events',
             json: true,
@@ -41,8 +45,9 @@ function getGithubEvents(callback) {
             }
         };
 
-        console.log('Fetching new events from github');
-        cache.github.lastRequest = Date.now();
+        console.log('Services: fetching new events from github');
+
+        cache.github.lastRequest = now;
 
         if (cache.github.ETag) {
             options.headers.ETag = cache.github.ETag;
@@ -60,7 +65,7 @@ function getGithubEvents(callback) {
             return callback(null, cache.github.timeline);
         });
     } else {
-        console.log('Using cached events from github');
+        console.log('Services: using cached events from github');
         process.nextTick(function () {
             callback(null, cache.github.timeline);
         });
