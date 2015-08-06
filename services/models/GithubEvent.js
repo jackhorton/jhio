@@ -83,24 +83,33 @@ class GithubEvent {
     getTemplateData() {
         let text;
         let url;
+        let iconClass;
         const name = this.event.repo.name;
 
         if (this.type === 'PushEvent') {
             text = `Pushed ${this.event.payload.size} commit${this.event.payload.size > 1 ? 's' : ''} to ${name}`;
             url = `https://www.github.com/${name}`;
+            iconClass = 'icon-arrow-circle-o-up';
         } else if (this.type === 'CreateEvent') {
             text = `Created a new ${this.event.payload.ref_type} at ${name}`;
             url = `https://www.github.com/${name}`;
+            iconClass = 'icon-file-code-o';
         } else if (this.type === 'IssuesEvent') {
             text = `Opened an issue with ${name}`;
             url = `https://www.github.com/${name}/issues/${this.event.payload.issue.number}`;
+            iconClass = 'icon-exclamation-triangle';
         } else if (this.type === 'WatchEvent') {
             text = `Starred ${name}`;
             url = `https://www.github.com/${name}`;
+            iconClass = 'icon-star-o';
         }
 
         return {
-            type: 'Github',
+            service: 'Github',
+            icons: {
+                service: 'icon-github',
+                event: iconClass
+            },
             template: utils.getComponentPath('home/activity'),
             'class': 'home-card-activity',
             text,
