@@ -3,7 +3,6 @@
 const async = require('async');
 const request = require('request');
 const utils = require('./utils');
-const config = require('../config');
 const GithubEvent = require('./models/GithubEvent');
 
 // only fetch new data every 10 minutes
@@ -72,6 +71,11 @@ function getGithubEvents(callback) {
     }
 }
 
+/**
+ * builds a clean timeline activities on github using the raw response from the Events API
+ * @param {Array} events - the response from the github Events API
+ * @return {Array}
+ */
 function buildGithubTimeline(events) {
     const timeline = [];
 
@@ -105,29 +109,4 @@ function buildGithubTimeline(events) {
     return timeline.map(function (value) {
         return value.getTemplateData();
     });
-}
-
-/**
- * we only want to merge certain events that the merge() function knows how to work with
- * this function should return true when the target's and candidate's type both match an event supported by merge()
- * @param {Object} target - the activity to merge into
- * @param {Object} candidate - the activity to be merged
- * @return {boolean}
- */
-function isMergable(target, candidate) {
-    return target.type === 'PushEvent'
-        && candidate.type === 'PushEvent';
-}
-
-/**
- * we only want to merge events that occur on the same day
- * this function should return true when date1 and date2 represent the same day
- * @param {Date} date1
- * @param {Date} date2
- * @return {boolean}
- */
-function isSameDay(date1, date2) {
-    return date1.getFullYear() === date2.getFullYear()
-        && date1.getMonth() === date2.getMonth()
-        && date1.getDate() === date2.getDate();
 }

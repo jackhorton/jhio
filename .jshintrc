@@ -4,17 +4,18 @@
     "browser": false,
 
     // enforcing
-    "camelcase": true,
-    "immed": true,
-    "newcap": true,
-    "plusplus": false,
-    "quotmark": "single",
-    "unused": "vars",
+    "curly": true,
+    "eqeqeq": true,
+    "freeze": true,
     "maxparams": 4,
+    "plusplus": false,
+    "undef": true,
+    "unused": "vars",
     "varstmt": true,
 
     // relaxing
     "esnext": true,
     "globalstrict": true,
+    "laxbreak": true,
     "validthis": true
 }

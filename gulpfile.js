@@ -29,7 +29,7 @@ gulp.task('javascript', function () {
 
     // set up page bundles
     const jsSources = glob.sync('./pages/*/page.js');
-    
+
     for (let i = 0; i < jsSources.length; i++) {
         const b = browserify({
             entries: jsSources[i]
@@ -46,7 +46,7 @@ gulp.task('javascript', function () {
             .pipe(sourcemaps.init({loadMaps: true}))
             .pipe(uglify())
             .pipe(sourcemaps.write())
-            .pipe(gulp.dest('./static/js/' + pagename));
+            .pipe(gulp.dest(`./static/js/${pagename}`));
     }
 });
 

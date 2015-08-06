@@ -49,11 +49,12 @@
     "requireSpaceBeforeObjectValues": true,
     "requireSpaceBetweenArguments": true,
     "requireSpacesInAnonymousFunctionExpression": {
-        "beforeOpeningRoundBrace": true,
+        /*"beforeOpeningRoundBrace": true,*/ // THIS SHOULD BE UNCOMMENTED ONCE JSCS FIXES #1607
         "beforeOpeningCurlyBrace": true
     },
     "requireSpacesInConditionalExpression": true,
     "requireSpacesInForStatement": true,
+    "requireTemplateStrings": true,
     "safeContextKeyword": ["self"],
     "validateIndentation": 4,
     "validateParameterSeparator": ", ",

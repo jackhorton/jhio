@@ -2,8 +2,6 @@
 
 const utils = require('../utils');
 
-const supportedEvents = ['PushEvent', 'IssuesEvent', 'WatchEvent', 'CreateEvent'];
-
 class GithubEvent {
     constructor(event) {
         this.event = event;
@@ -12,7 +10,10 @@ class GithubEvent {
         this.mergeable = event.type === 'PushEvent';
     }
 
+    // check if we support this event
     isSupported() {
+        const supportedEvents = ['PushEvent', 'IssuesEvent', 'WatchEvent', 'CreateEvent'];
+
         for (let i = 0; i < supportedEvents.length; i++) {
             if (this.type === supportedEvents[i]) {
                 return true;
@@ -22,10 +23,12 @@ class GithubEvent {
         return false;
     }
 
+    // check if the event happened in the last 50 days
     isOld() {
-        const today = new Date();
+        const now = Date.now();
+        const old = 1000 * 60 * 60 * 24 * 50;
 
-        if (this.date.getFullYear() < today.getFullYear()) {
+        if (now - this.date.getTime() > old) {
             return true;
         }
 

@@ -7,7 +7,7 @@ exports.formatTitle = formatTitle;
 exports.getComponentPath = getComponentPath;
 
 function formatTitle(pageTitle) {
-    return pageTitle + ' | jackhorton.io';
+    return `${pageTitle} | jackhorton.io`;
 }
 
 function getComponentPath(component) {
