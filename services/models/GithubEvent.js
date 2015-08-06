@@ -52,7 +52,6 @@ class GithubEvent {
         }
 
         return mergeable
-            && other.type === this.type
             && other.event.repo.name === this.event.repo.name
             && other.date.getFullYear() === this.date.getFullYear()
             && other.date.getMonth() === this.date.getMonth()
@@ -106,7 +105,7 @@ class GithubEvent {
             'class': 'home-card-activity',
             text,
             url,
-            date: this.date.toLocaleString('en-US', {year: 'numeric', month: 'long', day: 'numeric', timeZone: 'America/Los_Angeles'})
+            date: `${this.date.getMonth()}/${this.date.getDate()}/${this.date.getFullYear()}`
         };
     }
 }

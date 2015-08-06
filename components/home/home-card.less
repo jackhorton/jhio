@@ -1,0 +1,29 @@
+@import '../common/variables.less';
+@import './activity/activity.less';
+@import './post/post.less';
+@import './project/project.less';
+
+.home-card {
+    flex: 0 0 50%;
+    padding: 0 1em 1em 1em;
+
+    h4 {
+        margin: 0;
+    }
+
+    &__inner {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__date {
+        color: @grey;
+        font-size: 0.875em;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .home-card {
+        flex: 0 0 33%;
+    }
+}
