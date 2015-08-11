@@ -19,9 +19,9 @@
   "homepage": "https://github.com/jackhorton/jhio",
   "dependencies": {
     "async": "^1.4.0",
+    "babel": "^5.8.21",
     "compression": "^1.5.1",
     "express": "^4.13.1",
-    "jquery": "^2.1.4",
     "lodash": "^3.10.0",
     "marko": "^2.7.9",
     "morgan": "^1.6.1",
@@ -29,7 +29,9 @@
   },
   "devDependencies": {
     "autoprefixer-core": "^5.2.1",
+    "babelify": "^6.1.3",
     "browserify": "^11.0.1",
+    "browserify-shim": "^3.8.10",
     "glob": "^5.0.14",
     "gulp": "^3.9.0",
     "gulp-istanbul": "^0.10.0",
@@ -45,5 +47,15 @@
     "merge-stream": "^0.1.8",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
+  "browserify-shim": {
+    "jquery": "global:$",
+    "modernizr": "global:Modernizr",
+    "masonry": "global:Masonry"
   }
 }

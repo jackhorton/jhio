@@ -84,6 +84,7 @@ class GithubEvent {
         let text;
         let url;
         let iconClass;
+        let elementClass = 'home-card__activity';
         const name = this.event.repo.name;
 
         if (this.type === 'PushEvent') {
@@ -94,6 +95,7 @@ class GithubEvent {
             text = `Created a new ${this.event.payload.ref_type} at ${name}`;
             url = `https://www.github.com/${name}`;
             iconClass = 'icon-file-code-o';
+            elementClass += '--github-create';
         } else if (this.type === 'IssuesEvent') {
             text = `Opened an issue with ${name}`;
             url = `https://www.github.com/${name}/issues/${this.event.payload.issue.number}`;
@@ -111,7 +113,7 @@ class GithubEvent {
                 event: iconClass
             },
             template: utils.getComponentPath('home/activity'),
-            'class': 'home-card-activity',
+            'class': elementClass,
             text,
             url,
             date: `${this.date.getMonth()}/${this.date.getDate()}/${this.date.getFullYear()}`

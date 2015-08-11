@@ -16,7 +16,9 @@ app.use(morgan('dev', {
     }
 }));
 
+app.use('/js/vendor', express.static('vendor/js'));
 app.use('/js', express.static('static/js'));
+app.use('/css/vendor', express.static('vendor/css'));
 app.use('/css', express.static('static/css'));
 
 // app.use('/admin', require('./admin'));
@@ -27,4 +29,6 @@ app.get('/', require('./pages/index/controller'));
 // app.get('/posts', require('./pages/posts/controller'));
 // app.get('/resume', require('./pages/resume/controller'));
 
-app.listen(8000);
+app.listen(8000, function () {
+    console.log('Server started on port 8000');
+});

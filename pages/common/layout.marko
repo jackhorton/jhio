@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="//use.fonticons.com/2643743e.js"></script>
+    <script src="//use.typekit.net/zxf1tyd.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" rel="stylesheet" />
+    <link href="/css/common/page.css" rel="stylesheet" />
+    <layout-placeholder name="head" />
+</head>
+<body>
+    <div id="${data.pageId}" class="container">
+        <include template="../../components/header/header.marko" header="${data.header}" />
+        <include template="../../components/sidebar/sidebar.marko" selected="${data.pageId}"/>
+
+        <main>
+            <layout-placeholder name="content" />
+        </main>
+
+        <include template="../../components/footer/footer.marko" />
+
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="/js/vendor/modernizr.dev.js"></script>
+        <script src="/js/common/page.js"></script>
+        <layout-placeholder name="scripts" />
+    </div>
+</body>
+</html>

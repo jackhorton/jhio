@@ -6,6 +6,7 @@ const jshint = require('gulp-jshint');
 const stylish = require('jshint-stylish');
 const less = require('gulp-less');
 const browserify = require('browserify');
+const babelify = require('babelify');
 const source = require('vinyl-source-stream');
 const buffer = require('vinyl-buffer');
 const uglify = require('gulp-uglify');
@@ -17,30 +18,15 @@ const autoprefixer = require('autoprefixer-core');
 const postcss = require('gulp-postcss');
 
 gulp.task('javascript', function () {
-    // set up common bundle
-    const commonLibs = ['jquery'];
-
-    browserify({noParse: commonLibs})
-        .require(commonLibs)
-        .bundle()
-        .pipe(source('common.js'))
-        .pipe(buffer())
-        .pipe(gulp.dest('./static/js'));
-
-    // set up page bundles
     const jsSources = glob.sync('./pages/*/page.js');
 
     for (let i = 0; i < jsSources.length; i++) {
-        const b = browserify({
-            entries: jsSources[i]
-        });
-
         const pathParse = path.parse(jsSources[i]);
         const pagename = pathParse.dir.substring(pathParse.dir.lastIndexOf('/') + 1);
 
-        b.external(commonLibs);
-
-        b.bundle()
+        browserify({entries: jsSources[i]})
+            .transform(babelify)
+            .bundle()
             .pipe(source('page.js'))
             .pipe(buffer())
             .pipe(sourcemaps.init({loadMaps: true}))
@@ -51,7 +37,7 @@ gulp.task('javascript', function () {
 });
 
 gulp.task('less', function () {
-    return gulp.src(['./pages/common.less', './pages/*/page.less'])
+    return gulp.src(['./pages/*/page.less'])
         .pipe(sourcemaps.init())
         .pipe(less())
         .pipe(postcss([autoprefixer({browsers: ['last 2 versions']})]))
@@ -61,7 +47,7 @@ gulp.task('less', function () {
 });
 
 gulp.task('lint', function () {
-    return gulp.src(['./**/*.js', '!./node_modules/**', '!./static/**', '!./**/*.marko.js'])
+    return gulp.src(['./**/*.js', '!./node_modules/**', '!./static/**', '!./**/*.marko.js', '!./vendor/**/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter(stylish))
         .pipe(jscs());

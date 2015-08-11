@@ -2,4 +2,8 @@
 
 const $ = require('jquery');
 
-console.log($('main').html());
+$('main').masonry({
+    itemSelector: '.home-activity',
+    columnWidth: '.home-activity__sizer',
+    percentPosition: 'true'
+});
