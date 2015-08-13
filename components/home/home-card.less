@@ -4,7 +4,6 @@
 @import './project/project.less';
 
 .home-card {
-    flex: 0 0 49.5%;
     padding: 1em 1em 1em 1em;
     text-align: center;
     border: 1px solid @black;
@@ -17,6 +16,11 @@
 
     span {
         margin: 1em 0 0 0;
+    }
+
+    &,
+    &__sizer {
+        width: 49.5%;
     }
 
     &:nth-child(2n + 1) {
@@ -36,7 +40,10 @@
 
 @media only screen and (min-width: 768px) {
     .home-card {
-        flex: 0 0 32%;
+        &,
+        &__sizer {
+            width: 32%;
+        }
 
         &:nth-child(2n + 1) {
             margin-right: inherit;

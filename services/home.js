@@ -1,9 +1,9 @@
 'use strict';
 
-const async = require('async');
-const request = require('request');
-const utils = require('./utils');
-const GithubEvent = require('./models/GithubEvent');
+import { parallel } from 'async';
+import request from 'request';
+import { formatTitle } from './utils';
+import GithubEvent from './models/GithubEvent';
 
 // only fetch new data every 10 minutes
 const TIMEOUT = 1000 * 60 * 10;
@@ -14,18 +14,18 @@ const cache = {
     }
 };
 
-exports.fetchParts = function fetchParts(callback) {
-    async.parallel({
+export default function fetchParts(callback) {
+    parallel({
         github: getGithubEvents
     }, function (err, data) {
         callback(err, {
             pageId: 'home',
-            pageTitle: utils.formatTitle('Home'),
+            pageTitle: formatTitle('Home'),
             header: 'jackhorton.io',
             timeline: data.github
         });
     });
-};
+}
 
 /**
  * gets the most recent 30 Events that I created

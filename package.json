@@ -55,7 +55,6 @@
   },
   "browserify-shim": {
     "jquery": "global:$",
-    "modernizr": "global:Modernizr",
-    "masonry": "global:Masonry"
+    "modernizr": "global:Modernizr"
   }
 }

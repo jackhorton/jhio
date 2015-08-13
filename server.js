@@ -3,11 +3,14 @@
 // allow us to require('file.marko')
 require('marko/node-require').install();
 
-const express = require('express');
-const compression = require('compression');
-const morgan = require('morgan');
+// allow us to use ES6 elsewhere
+require('babel/register');
 
-const app = express();
+var express = require('express');
+var compression = require('compression');
+var morgan = require('morgan');
+
+var app = express();
 
 app.use(compression());
 app.use(morgan('dev', {

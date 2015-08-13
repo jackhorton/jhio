@@ -1,10 +1,12 @@
 'use strict';
 
-const home = require('../../services/home');
-const page = require('./page.marko');
+import fetchParts from '../../services/home';
+import * as marko from 'marko';
 
-module.exports = function controller(req, res) {
-    home.fetchParts(function (err, data) {
+const page = marko.load(require.resolve('./page.marko'));
+
+export default function controller(req, res) {
+    fetchParts(function (err, data) {
         if (err) {
             return res.sendStatus(500).end();
         }
@@ -12,4 +14,4 @@ module.exports = function controller(req, res) {
         res.type('html');
         page.render(data, res);
     });
-};
+}

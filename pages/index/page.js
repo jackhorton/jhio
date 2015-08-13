@@ -1,9 +1,5 @@
 'use strict';
 
-const $ = require('jquery');
+import $ from 'jquery';
 
-$('main').masonry({
-    itemSelector: '.home-activity',
-    columnWidth: '.home-activity__sizer',
-    percentPosition: 'true'
-});
+console.log($('.home-card')[0]);

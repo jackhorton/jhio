@@ -1,8 +1,8 @@
 'use strict';
 
-const utils = require('../utils');
+import { getComponentPath } from '../utils';
 
-class GithubEvent {
+export default class GithubEvent {
     constructor(event) {
         this.event = event;
         this.date = new Date(event.created_at);
@@ -112,7 +112,7 @@ class GithubEvent {
                 service: 'icon-github',
                 event: iconClass
             },
-            template: utils.getComponentPath('home/activity'),
+            template: getComponentPath('home/activity'),
             'class': elementClass,
             text,
             url,

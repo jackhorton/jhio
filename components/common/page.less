@@ -6,7 +6,7 @@ html {
     box-sizing: inherit;
 }
 
-.container {
+.page-container {
     display: flex;
     flex-flow: row wrap;
     width: 100%;
@@ -17,12 +17,12 @@ html {
 main {
     display: flex;
     flex-flow: row wrap;
-    flex-basis: 100%;
+    flex: 0 0 100%;
     padding: 20px 10px;
 }
 
 @media only screen and (min-width: 1024px) {
-    .container {
+    .page-container {
         padding: 0;
         width: 1024px;
     }
@@ -33,7 +33,7 @@ main {
 }
 
 @media only screen and (min-width: 1680px) {
-    .container {
+    .page-container {
         width: 1600px;
     }
 }
