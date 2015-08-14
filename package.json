@@ -17,6 +17,9 @@
     "url": "https://github.com/jackhorton/jhio/issues"
   },
   "homepage": "https://github.com/jackhorton/jhio",
+  "engines": {
+      "node": "0.12.x"
+  },
   "dependencies": {
     "async": "^1.4.0",
     "babel": "^5.8.21",
