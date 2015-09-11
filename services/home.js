@@ -1,8 +1,8 @@
 'use strict';
 
-import { parallel } from 'async';
+import {parallel} from 'async';
 import request from 'request';
-import { formatTitle } from './utils';
+import {formatTitle} from './utils';
 import GithubEvent from './models/GithubEvent';
 
 // only fetch new data every 10 minutes
@@ -17,11 +17,10 @@ const cache = {
 export default function fetchParts(callback) {
     parallel({
         github: getGithubEvents
-    }, function (err, data) {
+    }, (err, data) => {
         callback(err, {
             pageId: 'home',
-            pageTitle: formatTitle('Home'),
-            header: 'jackhorton.io',
+            pageTitle: formatTitle('home'),
             timeline: data.github
         });
     });
@@ -77,6 +76,11 @@ function getGithubEvents(callback) {
  * @return {Array}
  */
 function buildGithubTimeline(events) {
+    const meta = {
+        commits: 0,
+        stars: 0,
+        repos: new Set()
+    };
     const timeline = [];
 
     for (let i = 0; i < events.length; i++) {
@@ -90,6 +94,7 @@ function buildGithubTimeline(events) {
         }
 
         // the same event occurring multiple times on the same day
+        // OPTIMIZE: only loop through events on the same day
         for (let k = 0; k < timeline.length; k++) {
             const activity = timeline[k];
 
@@ -106,7 +111,7 @@ function buildGithubTimeline(events) {
         }
     }
 
-    return timeline.map(function (value) {
+    return timeline.map((value) => {
         return value.getTemplateData();
     });
 }

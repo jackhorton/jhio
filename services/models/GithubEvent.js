@@ -1,6 +1,6 @@
 'use strict';
 
-import { getComponentPath } from '../utils';
+import {getComponentPath} from '../utils';
 
 export default class GithubEvent {
     constructor(event) {
@@ -11,7 +11,7 @@ export default class GithubEvent {
 
     // check if we support this event
     isSupported() {
-        const supportedEvents = ['PushEvent', 'IssuesEvent', 'WatchEvent', 'CreateEvent'];
+        const supportedEvents = ['PushEvent', 'IssuesEvent', 'WatchEvent', 'CreateEvent', 'ForkEvent'];
 
         for (let i = 0; i < supportedEvents.length; i++) {
             if (this.type === supportedEvents[i]) {
@@ -79,31 +79,60 @@ export default class GithubEvent {
 
     }
 
-    // make it easy for templates to consume this data
-    getTemplateData() {
-        let text;
-        let url;
-        let iconClass;
-        let elementClass = 'home-card__activity';
+    getUrl() {
+        const name = this.event.repo.name;
+
+        if (this.event.type === 'IssuesEvent') {
+            return `https://www.github.com/${name}/issues/${this.event.payload.issue.number}`;
+        } else if (this.event.type === 'PullRequestEvent') {
+            return `https://www.github.com/${name}/pull/${this.event.payload.pull_request.number}`;
+        } else {
+            return `https://www.github.com/${name}`;
+        }
+    }
+
+    getDescription() {
         const name = this.event.repo.name;
 
         if (this.type === 'PushEvent') {
-            text = `Pushed ${this.event.payload.size} commit${this.event.payload.size > 1 ? 's' : ''} to ${name}`;
-            url = `https://www.github.com/${name}`;
-            iconClass = 'icon-arrow-circle-o-up';
+            return `Pushed ${this.event.payload.size} commit${this.event.payload.size > 1 ? 's' : ''} to ${name}`;
         } else if (this.type === 'CreateEvent') {
-            text = `Created a new ${this.event.payload.ref_type} at ${name}`;
-            url = `https://www.github.com/${name}`;
-            iconClass = 'icon-file-code-o';
-            elementClass += '--github-create';
+            return `Created a new ${this.event.payload.ref_type} at ${name}`;
         } else if (this.type === 'IssuesEvent') {
-            text = `Opened an issue with ${name}`;
-            url = `https://www.github.com/${name}/issues/${this.event.payload.issue.number}`;
-            iconClass = 'icon-exclamation-triangle';
+            return `Opened an issue with ${name}`;
         } else if (this.type === 'WatchEvent') {
-            text = `Starred ${name}`;
-            url = `https://www.github.com/${name}`;
-            iconClass = 'icon-star-o';
+            return `Starred ${name}`;
+        } else if (this.type === 'ForkEvent') {
+            return `Forked ${name}`;
+        } else if (this.type === 'PullRequest') {
+            return `Opened pull request ${name}#${this.event.payload.pull_request.number}`;
+        }
+    }
+
+    // make it easy for templates to consume this data
+    getTemplateData() {
+        let iconClass = 'mega-octicon octicon-';
+        let elementClass = 'home-card__activity';
+        const name = this.event.repo.name;
+
+        // sort out icon classes
+        if (this.type === 'PushEvent') {
+            iconClass += 'repo-push';
+        } else if (this.type === 'CreateEvent') {
+            iconClass += 'file-code';
+        } else if (this.type === 'IssuesEvent') {
+            iconClass += 'issue-opened';
+        } else if (this.type === 'WatchEvent') {
+            iconClass += 'star';
+        } else if (this.type === 'ForkEvent') {
+            iconClass += 'repo-forked';
+        } else if (this.type === 'PullRequest') {
+            iconClass += 'git-pull-request';
+        }
+
+        // sort out element classes
+        if (this.type === 'CreateEvent') {
+            elementClass += '--github-create';
         }
 
         return {
@@ -114,11 +143,9 @@ export default class GithubEvent {
             },
             template: getComponentPath('home/activity'),
             'class': elementClass,
-            text,
-            url,
-            date: `${this.date.getMonth()}/${this.date.getDate()}/${this.date.getFullYear()}`
+            text: this.getDescription(),
+            url: this.getUrl(),
+            date: `${this.date.getMonth() + 1}/${this.date.getDate()}/${this.date.getFullYear()}`
         };
     }
 }
-
-module.exports = GithubEvent;

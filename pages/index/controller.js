@@ -1,12 +1,12 @@
 'use strict';
 
 import fetchParts from '../../services/home';
-import * as marko from 'marko';
+import {load} from 'marko';
 
-const page = marko.load(require.resolve('./page.marko'));
+const page = load(require.resolve('./page.marko'));
 
 export default function controller(req, res) {
-    fetchParts(function (err, data) {
+    fetchParts((err, data) => {
         if (err) {
             return res.sendStatus(500).end();
         }

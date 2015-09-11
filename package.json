@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/jackhorton/jhio",
   "engines": {
-      "node": "0.12.x"
+    "node": "^4.0.0"
   },
   "dependencies": {
     "async": "^1.4.0",

@@ -1,6 +1,6 @@
 <layout-use template="../home-card.marko" model="${data.model}">
     <layout-put into="card-body">
-        <i class="icon icon-3x ${data.model.icons.event}"></i>
+        <span class="${data.model.icons.event}"></span>
         <h4>${data.model.text}</h4>
         <span class="home-card__date">
             <i class="icon ${data.model.icons.service}"></i> ${data.model.date}

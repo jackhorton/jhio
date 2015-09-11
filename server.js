@@ -1,18 +1,18 @@
 'use strict';
 
-// allow us to use ES6 elsewhere
+// allow us to use more ES6 (modules, really) elsewhere
 require('babel/register');
 
-var express = require('express');
-var compression = require('compression');
-var morgan = require('morgan');
+const express = require('express');
+const compression = require('compression');
+const morgan = require('morgan');
 
 var app = express();
 var port = process.env.PORT || 8000;
 
 app.use(compression());
 app.use(morgan('dev', {
-    skip: function (req, res) {
+    skip: (req, res) => {
         return req.originalUrl.indexOf('/js') >= 0 || req.originalUrl.indexOf('/css') >= 0;
     }
 }));
@@ -28,8 +28,9 @@ app.get('/', require('./pages/index/controller'));
 
 // app.get('/projects', require('./pages/projects/controller'));
 // app.get('/posts', require('./pages/posts/controller'));
-// app.get('/resume', require('./pages/resume/controller'));
 
-app.listen(port, function () {
+app.get('/resume', require('./pages/resume/controller'));
+
+app.listen(port, () => {
     console.log('Server started on port ' + port);
 });
